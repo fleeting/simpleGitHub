@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>simpleGithub | jQuery Github Plugin</title>
+	
+	<style>
+	article {
+		margin-bottom: 10px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid #ccc;
+	}
+	</style>
+</head>
+<body>
+	<h1>simpleGithub | jQuery Plugin</h1>
+	<p><strong>TODO</strong>: Finish plugin! Style up a few examples showing repos, a user info widget and org info.</p>
+	
+	<div id="profile"></div>
+	<div id="repos"></div>
+	<div id="orgs"></div>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script src="jquery.simpleGithub.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$.simpleGithub({
+				name: 'jamesfleeting',
+				type: 'user',
+				method: 'info',
+				option: '',
+				success: function(user) {
+					html = '<img src="'+user.avatar_url+'" alt="github avatar" style="float: left; margin: 0 10px 10px;">';
+					html += '<h2>'+user.name+' <small>('+user.login+')</small></h2>';
+					html += '<p><strong>Repos</strong>: '+user.public_repos+' | <strong>Gists</strong>: '+user.public_gists+'<br />';
+					html += '<strong>Followers</strong>: '+user.followers+' | <strong>Following</strong>: '+user.following+'<br />';
+					
+					$('#profile').html(html);
+				},
+				error: function(error) {
+					$('#profile').html('<p>'+error+'</p>');
+				}
+			});
+			
+			$.simpleGithub({
+				name: 'jamesfleeting',
+				type: 'user',
+				method: 'repos',
+				option: '',
+				success: function(results) {
+					html = '<h2>My Open Source Repos</h2>';
+					$(results).each(function() {
+						html += '<article class="github-repo">';
+						html += '<h4>'+this.name+'</h4>';
+						html += '<p>'+this.description+'</p>';
+						html += '<p><strong>Forks</strong>: '+this.forks+' | <strong>Watchers</strong>: '+this.watchers+'<br />';
+						if(this.homepage)
+							html += '<a href="'+this.homepage+'" title="'+this.name+' Website">Website</a> | ';
+						html += '<a href="'+this.html_url+'" title="'+this.name+' Source on GitHub">Source</a></p>';
+						html += '</article>';
+					});
+					
+					$('#repos').html(html);
+				},
+				error: function(error) {
+					$('#repos').html('<p>'+error+'</p>');
+				}
+			});
+		});
+	</script>
+</body>
+</html>

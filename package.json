@@ -1,0 +1,32 @@
+{
+    "name": "simplegithub",
+    "version": "0.1",
+    "title": "simpleGitHub",
+    "author": {
+        "name": "James Fleeting",
+        "email": "hello@jamesfleeting.com",
+        "url": "http://jamesfleeting.com"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "MIT-LICENSE.txt"
+        }
+    ],
+    "dependencies": {
+        "jquery": ">1.5"
+    },
+    "description": "A simple plugin for displaying GitHub user, org and repo widgets on your site. You get the data and control the HTML and CSS.",
+    "keywords": [
+        "github",
+        "projects",
+        "api",
+        "open source",
+        "monkeecreate"
+    ],
+    "homepage": "http://simplegithub.monkeecreate.com",
+    "demo": "http://simplegithub",
+    "files": [
+        "jquery.simpleGithub.js"
+    ]
+}
